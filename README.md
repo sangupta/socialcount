@@ -52,6 +52,26 @@ SocialCountClient.getFacebookCount(counts);
 counts.markComplete();
 ```
 
+Or better still, just configure the providers you want to run and the library takes care of the rest:
+
+```java
+String url = "http://facebook.com";
+
+// the config object can be reused as many times as want and is thread-safe
+SocialCountConfig config = new SocialCountConfig();
+config.twitter = true; // can be skipped as be default everything is true
+config.facebook = true; // can be skipped as be default everything is true
+config.googlePlusOne = false;
+config.googleShares = false;
+config.linkedin = false;
+config.pinterest = false;
+
+counts = SocialCountClient.getSocialCounts(url, config);
+
+// or run the parallelized version
+// counts = SocialCountClient.getSocialCountsParallel(url, config);
+```
+
 Release Logs
 ------------
 
