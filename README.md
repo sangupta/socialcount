@@ -6,11 +6,11 @@ helps in analyzing the current outreach of a given URL.
 
 The following social media providers are currently integrated:
 
-* Facebook like/share/comments
+* Facebook likes, shares, comments and clicks
 * Twitter tweets
-* Google Plus ones
+* Google Plus ones and shares
 * Pinterest pins
-* Linkedin shares
+* LinkedIn shares
 
 Usage
 -----
@@ -77,7 +77,7 @@ Release Logs
 
 **Development Version**
 
-* Integration with Facebook, Twitter, Google Plus, Linkedin and Pinterest
+* Integration with Facebook, Twitter, Google Plus, LinkedIn and Pinterest
 * Basic API structure
 
 RoadMap
