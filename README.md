@@ -14,6 +14,29 @@ The following social media providers are currently integrated:
 
 Usage
 -----
+The library can be used in two ways:
+
+* As a standalone command-line application
+* As an embedded library
+
+### Standalone App Usage
+
+To run the command line version execute the following shelll command,
+
+```
+$ java -jar socialcount-1.0.0.jar
+```
+
+The console will keep reading URLs from console via user input, and will push out the metrics. To
+stop checking more URLs, simply return an empty URL.
+
+One may also check URLs directly from command line as:
+
+```
+$ java -jar socialcount-1.0.0.jar http://facebook.com
+```
+
+### Library usage
 
 Using the library is pretty easy, as under,
 
