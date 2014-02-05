@@ -36,7 +36,7 @@ public class TestSocialCounts {
 	
 	@Test
 	public void testAllSocialAccounts() {
-		SocialCounts counts = SocialCountClient.getSocialCounts("http://facebook.com");
+		SocialCounts counts = SocialCountClient.getSocialCountsParallel("http://facebook.com");
 		Assert.isTrue(counts.twitter > 0);
 		
 		Assert.isTrue(counts.facebookClicks >= 0);
@@ -52,16 +52,6 @@ public class TestSocialCounts {
 		Assert.isTrue(counts.pinterestPins >= 0);
 	}
 	
-	@Test
-	public void testPerformance() {
-		String url = "http://facebook.com";
-		SocialCounts counts1 = SocialCountClient.getSocialCounts(url);
-		System.out.println(counts1);
-		
-		SocialCounts counts2 = SocialCountClient.getSocialCountsParallel(url);
-		System.out.println(counts2);
-	}
-
 	/**
 	 * Simple method to show various stats for facebook.com as a command
 	 * line app.
@@ -69,7 +59,12 @@ public class TestSocialCounts {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new TestSocialCounts().testPerformance();
+		String url = "http://facebook.com";
+		SocialCounts counts1 = SocialCountClient.getSocialCounts(url);
+		System.out.println(counts1);
+		
+		SocialCounts counts2 = SocialCountClient.getSocialCountsParallel(url);
+		System.out.println(counts2);
 	}
 	
 }

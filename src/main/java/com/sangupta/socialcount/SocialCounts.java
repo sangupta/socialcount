@@ -51,47 +51,47 @@ public class SocialCounts {
 	/**
 	 * Number of shares on facebook.com
 	 */
-	public long facebookShares = -1;
+	public volatile long facebookShares = -1;
 	
 	/**
 	 * Number of likes on facebook.com
 	 */
-	public long facebookLikes = -1;
+	public volatile long facebookLikes = -1;
 	
 	/**
 	 * Number of comments on facebook.com
 	 */
-	public long facebookComments = -1;
+	public volatile long facebookComments = -1;
 	
 	/**
 	 * Number of clicks from facebook.com
 	 */
-	public long facebookClicks = -1;
+	public volatile long facebookClicks = -1;
 	
 	/**
 	 * Number of tweets on twitter.com
 	 */
-	public long twitter = -1;
+	public volatile long twitter = -1;
 	
 	/**
 	 * Number of +1s on google.com
 	 */
-	public long googlePlusOne = -1;
+	public volatile long googlePlusOne = -1;
 	
 	/**
 	 * Number of shares on Google Plus
 	 */
-	public long googleShares = -1;
+	public volatile long googleShares = -1;
 	
 	/**
 	 * Number of shares on linkedin.com
 	 */
-	public long linkedinShares = -1;
+	public volatile long linkedinShares = -1;
 	
 	/**
 	 * Number of pins on pinterest.com
 	 */
-	public long pinterestPins = -1;
+	public volatile long pinterestPins = -1;
 	
 	/**
 	 * Time taken to fetch all the metrics
