@@ -59,10 +59,10 @@ String url = "http://facebook.com";
 
 // the config object can be reused as many times as want and is thread-safe
 SocialCountConfig config = new SocialCountConfig();
-config.twitter = true; // can be skipped as be default everything is true
-config.facebook = true; // can be skipped as be default everything is true
+config.twitter = true; // can be skipped as by default everything is true
+config.facebook = true; // can be skipped as by default everything is true
 config.googlePlusOne = false;
-config.googleShares = false;
+config.googleShares = false; // this one takes a lot of time
 config.linkedin = false;
 config.pinterest = false;
 
