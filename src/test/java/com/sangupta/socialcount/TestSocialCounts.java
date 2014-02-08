@@ -22,7 +22,7 @@
 package com.sangupta.socialcount;
 
 import org.junit.Test;
-import org.springframework.util.Assert;
+import org.junit.Assert;
 
 /**
  * Test suite for the {@link SocialCountClient} and also
@@ -37,19 +37,19 @@ public class TestSocialCounts {
 	@Test
 	public void testAllSocialAccounts() {
 		SocialCounts counts = SocialCountClient.getSocialCountsParallel("http://facebook.com");
-		Assert.isTrue(counts.twitter > 0);
+		Assert.assertTrue(counts.twitter > 0);
 		
-		Assert.isTrue(counts.facebookClicks >= 0);
-		Assert.isTrue(counts.facebookComments >= 0);
-		Assert.isTrue(counts.facebookLikes >= 0);
-		Assert.isTrue(counts.facebookShares >= 0);
+		Assert.assertTrue(counts.facebookClicks >= 0);
+		Assert.assertTrue(counts.facebookComments >= 0);
+		Assert.assertTrue(counts.facebookLikes >= 0);
+		Assert.assertTrue(counts.facebookShares >= 0);
 		
-		Assert.isTrue(counts.googlePlusOne >= 0);
-		Assert.isTrue(counts.googleShares >= 0);
+		Assert.assertTrue(counts.googlePlusOne >= 0);
+		Assert.assertTrue(counts.googleShares >= 0);
 		
-		Assert.isTrue(counts.linkedinShares >= 0);
+		Assert.assertTrue(counts.linkedinShares >= 0);
 		
-		Assert.isTrue(counts.pinterestPins >= 0);
+		Assert.assertTrue(counts.pinterestPins >= 0);
 	}
 	
 	/**
