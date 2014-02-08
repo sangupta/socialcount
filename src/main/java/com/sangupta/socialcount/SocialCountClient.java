@@ -65,29 +65,37 @@ public class SocialCountClient {
 	private static final SocialCountConfig ALL_TRUE_CONFIG = new SocialCountConfig();
 	
 	/**
-	 * Find various social counts for the given URL. The returned object contains the
-	 * various values. If a value is <code>-1</code>, it represents that something went
-	 * wrong while fetching the value. All APIs are run sequentially one after another
-	 * and thus may take time.
+	 * Find various social counts for the given URL. The returned object
+	 * contains the various values. If a value is <code>-1</code>, it represents
+	 * that something went wrong while fetching the value. All APIs are run
+	 * sequentially one after another and thus may take time.
 	 * 
 	 * @param url
-	 * @return
+	 *            the url to analyze
+	 * 
+	 * @return the {@link SocialCounts} containing all metrics
 	 */
 	public static SocialCounts getSocialCounts(String url) {
 		return getSocialCounts(url, ALL_TRUE_CONFIG);
 	}
 	
 	/**
-	 * Find various social counts for the given URL. This method allows you to control
-	 * the providers that you want to hit. 
+	 * Find various social counts for the given URL. This method allows you to
+	 * control the providers that you want to hit.
 	 * 
-	 * The returned object contains the
-	 * various values. If a value is <code>-1</code>, it represents that something went
-	 * wrong while fetching the value. All APIs are run sequentially one after another
-	 * and thus may take time.
+	 * The returned object contains the various values. If a value is
+	 * <code>-1</code>, it represents that something went wrong while fetching
+	 * the value. All APIs are run sequentially one after another and thus may
+	 * take time.
 	 * 
 	 * @param url
-	 * @return
+	 *            the url to analyze
+	 * 
+	 * @param config
+	 *            the provider configuration on which ones to hit
+	 * 
+	 * @return the {@link SocialCounts} containing all metrics
+	 * 
 	 */
 	public static SocialCounts getSocialCounts(String url, SocialCountConfig config) {
 		if(AssertUtils.isEmpty(url)) {
@@ -129,20 +137,34 @@ public class SocialCountClient {
 	}
 
 	/**
+	 * Compute the social counts from all providers, and return the metrics.
 	 * The APIs are run in parallel to speed up the fetching of counts.
 	 * 
 	 * @param url
-	 * @return
+	 *            the url to analyze
+	 * 
+	 * @return the {@link SocialCounts} instance containing updated metrics
 	 */
 	public static SocialCounts getSocialCountsParallel(String url) {
 		return getSocialCountsParallel(url, ALL_TRUE_CONFIG);
 	}
 	
 	/**
+	 * Compute the social counts from given chosen providers using the
+	 * {@link SocialCountConfig} instance. The APIs are run in parallel to speed
+	 * up the fetching of counts.
 	 * 
 	 * @param url
+	 *            the url to analyze
+	 * 
 	 * @param config
-	 * @return
+	 *            the {@link SocialCountConfig} containing which providers to
+	 *            hit
+	 * 
+	 * @return the {@link SocialCounts} instance containing updated metrics
+	 * 
+	 * @throws IllegalArgumentException
+	 *             if the url is <code>null</code> or empty
 	 */
 	public static SocialCounts getSocialCountsParallel(String url, SocialCountConfig config) {
 		if(AssertUtils.isEmpty(url)) {
@@ -204,6 +226,8 @@ public class SocialCountClient {
 	 * Get linkedin shares for the given url.
 	 * 
 	 * @param counts
+	 *            the {@link SocialCounts} instance to be updated and containing
+	 *            the url
 	 */
 	public static void getLinkedinCount(SocialCounts counts) {
 		String api = "http://www.linkedin.com/countserv/count/share?lang=en_US&callback=showCount&url=" + counts.encodedUri;
@@ -223,6 +247,13 @@ public class SocialCountClient {
 		counts.linkedinShares = linkedin.count;
 	}
 
+	/**
+	 * Get pinterest pin count for the given url.
+	 * 
+	 * @param counts
+	 *            the {@link SocialCounts} instance to be updated and containing
+	 *            the url
+	 */
 	public static void getPinterestCount(SocialCounts counts) {
 		String api = "http://api.pinterest.com/v1/urls/count.json?callback=showCount&url=" + counts.encodedUri;
 		WebResponse response = WebInvoker.getResponse(api);
@@ -243,9 +274,10 @@ public class SocialCountClient {
 
 	/**
 	 * Find the Google Plus shares for a given url.
-	 *  
-	 * @param canonicalizedUrl
-	 * @return
+	 * 
+	 * @param counts
+	 *            the {@link SocialCounts} instance to be updated and containing
+	 *            the url
 	 */
 	public static void getGooglePlusOneCount(SocialCounts counts) {
 		String api = "https://clients6.google.com/rpc";
@@ -268,10 +300,12 @@ public class SocialCountClient {
 	}
 
 	/**
-	 * Find google+ shares for a given url. Note that this method is really
-	 * slow because of the lack of a direct API from Google.
+	 * Find google+ shares for a given url. Note that this method is really slow
+	 * because of the lack of a direct API from Google.
 	 * 
 	 * @param counts
+	 *            the {@link SocialCounts} instance to be updated and containing
+	 *            the url
 	 */
 	public static void getGoogleShares(SocialCounts counts) {
 		String api = "https://plus.google.com/ripple/details?url=" + UriUtils.encodeURIComponent("http://facebook.com");
@@ -297,12 +331,14 @@ public class SocialCountClient {
 	/**
 	 * Find the facebook shares for a given URL.
 	 * 
-	 * Refer <a href="https://developers.facebook.com/docs/reference/fql/link_stat/">
+	 * Refer <a
+	 * href="https://developers.facebook.com/docs/reference/fql/link_stat/">
 	 * https://developers.facebook.com/docs/reference/fql/link_stat/</a> for
 	 * more details.
 	 * 
-	 * @param url
-	 * @return
+	 * @param counts
+	 *            the {@link SocialCounts} instance to be updated and containing
+	 *            the url
 	 */
 	public static void getFacebookCount(SocialCounts counts) {
 		String query = "SELECT url, like_count, click_count, comment_count, share_count FROM link_stat WHERE url='" + counts.url + "'";
@@ -326,8 +362,9 @@ public class SocialCountClient {
 	/**
 	 * Find twitter shares for a given URL.
 	 * 
-	 * @param url
-	 * @return
+	 * @param counts
+	 *            the {@link SocialCounts} instance to be updated and containing
+	 *            the url
 	 */
 	public static void getTwitterCount(SocialCounts counts) {
 		String api = "https://cdn.api.twitter.com/1/urls/count.json?url=" + counts.encodedUri;
