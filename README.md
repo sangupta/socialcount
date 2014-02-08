@@ -1,8 +1,8 @@
-Social Counts
-=============
+Social Count
+============
 
-A simple JAVA library to fetch various social like/share/comment counts for a given URL. This
-helps in analyzing the current outreach of a given URL.
+`socialcount` is a simple JAVA library to fetch various social like/share/comment counts for a 
+given URL. This helps in analyzing the current outreach of a given URL.
 
 The following social media providers are currently integrated:
 
@@ -98,7 +98,7 @@ counts = SocialCountClient.getSocialCounts(url, config);
 Release Logs
 ------------
 
-**Development Version**
+**1.0.0**
 
 * Integration with Facebook, Twitter, Google Plus, LinkedIn and Pinterest
 * Basic API structure
@@ -110,11 +110,11 @@ RoadMap
 
 Dependencies
 ------------
-`socialcounts` depends on the following open-source frameworks
+`socialcount` depends on the following open-source frameworks
 
-* `jerry` - a common functionality library
-* Apache HTTP Client library
-* Google GSON library for JSON deserialization
+* Apache HTTP Client library - for making HTTP requests
+* `jerry-http` - for working with web
+* Google GSON library - for JSON deserialization
 
 Versioning
 ----------
