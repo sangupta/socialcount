@@ -12,6 +12,19 @@ The following social media providers are currently integrated:
 * Pinterest pins
 * LinkedIn shares
 
+Downloads
+---------
+
+The library can be downloaded from Maven Central using:
+
+```xml
+<dependency>
+    <groupId>com.sangupta</groupId>
+    <artifactId>socialcount</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
 Usage
 -----
 The library can be used in two ways:
